@@ -2,9 +2,9 @@
 
 LPIC-2(201/202)と LPIC-3 305 の模擬試験を1つのアプリで提供する Web 試験対策ツール。
 
-- **LPIC-201** Linux Engineer 201-450 v4.5 — 200問
-- **LPIC-202** Linux Engineer 202-450 v4.5 — 200問
-- **LPIC-305** Linux Professional 3 仮想化・コンテナ — 200問
+- **LPIC-201** Linux Engineer 201-450 v4.5 — 150問
+- **LPIC-202** Linux Engineer 202-450 v4.5 — 150問
+- **LPIC-305** Linux Professional 3 仮想化・コンテナ — 150問
 
 ## 特徴
 
