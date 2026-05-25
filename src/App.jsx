@@ -30,8 +30,22 @@ function shuffleArray(arr) {
   return a;
 }
 
+// Options that reference other options by letter (e.g. "AとBが正しい", "AまたはB",
+// "上記の全て") become nonsensical after shuffling. Detect these and skip shuffle.
+const CROSS_REF_PATTERNS = [
+  /[A-E]\s*(?:と|または|もしくは|および|及び|や)\s*[A-E]/,
+  /上記(?:の)?(?:全て|すべて|全部)/,
+  /(?:すべて|全て)が?(?:正しい|有効|該当)/,
+  /どちらも(?:可能|正しい|有効|該当)?|どれも.*?正しい|どちらでもない|どれでもない/,
+];
+function hasCrossReferenceOptions(options) {
+  if (!options || options.length === 0) return false;
+  return options.some((opt) => CROSS_REF_PATTERNS.some((re) => re.test(opt)));
+}
+
 function shuffleQuestion(q) {
   if (q.type === 'command' || !q.options || q.options.length === 0) return q;
+  if (hasCrossReferenceOptions(q.options)) return q; // keep original order
   const isMulti = q.type === 'multi';
   const correctSet = new Set(isMulti ? q.answer : [q.answer]);
   const indexed = q.options.map((opt, i) => ({ opt, isCorrect: correctSet.has(i) }));
